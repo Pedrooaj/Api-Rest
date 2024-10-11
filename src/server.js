@@ -1,10 +1,7 @@
-import app from "./app";
+import app from "./app.js";
+const port = 3000;
 
-
-const port: number = 3000;
-
-
-app.listen(port, (error?: Error) => {
+app.listen(port, (error) => {
     if(!error){
         console.log("Servidor rodando http://localhost:3000");
     }else{

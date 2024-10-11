@@ -1,15 +1,18 @@
 import express from "express";
-import routes from "./src/routes";
+import routes from "./routes.js";
+import dotenv from "dotenv";
+dotenv.config();
+
+import "./database";
+
+
 
 class App {
-    public app: express.Application;
 
     constructor(){
         this.app = express();
         this.middlewares(); // Executa todos middlewares
         this.router(); // executa a função router para chamar rotas
-
-
     }
 
     router(){
