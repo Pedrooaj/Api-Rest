@@ -1,9 +1,10 @@
 import express from "express";
-import routes from "./routes.js";
+import HomeRoute from "./routes/HomeRoutes";
+import UserRoute from "./routes/UserRoutes";
 import dotenv from "dotenv";
 dotenv.config();
 
-import "./database";
+import "./database"; // Importando arquivo que contem a conexão com o banco de dados e Models
 
 
 
@@ -16,7 +17,8 @@ class App {
     }
 
     router(){
-        this.app.use(routes);
+        this.app.use("/", HomeRoute);
+        this.app.use("/users", UserRoute);
     }
 
     middlewares(){

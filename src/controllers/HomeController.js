@@ -2,6 +2,7 @@ import Aluno from "../models/Aluno.js";
 
 class HomeController{
     async index(req, res){
+        // efetuando teste do model
         const novoAluno = await Aluno.create({
             nome: "Pedroo",
             sobrenome: "Lemos",
