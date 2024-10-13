@@ -19,3 +19,9 @@ npx sequelize migration:create --name=alunos
 ```bash
 npx sequelize migration:db
 ```
+## Stack utilizada
+
+**Front-end:** ...
+
+**Back-end:** Node, Express, MariaDB e Sequelize.
+
