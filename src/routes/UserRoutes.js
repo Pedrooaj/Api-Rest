@@ -3,8 +3,12 @@ import { Router } from "express";
 
 const UserRoute = Router();
 
-// rotas de users
+// rotas de users 
+UserRoute.get("/", UserController.index);
 UserRoute.post("/", UserController.create);
+UserRoute.get("/:id", UserController.show);
+UserRoute.put("/:id", UserController.update);
+UserRoute.delete("/:id", UserController.delete);
 
 
 

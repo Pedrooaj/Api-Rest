@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    // efetuando criação da tabela users com as colunas e seus devidos atributos e tipos
+    // efetuando criação do modelo da tabela users com as colunas e seus devidos atributos e tipos
      await queryInterface.createTable('users', { 
       id: {
         type: Sequelize.INTEGER,

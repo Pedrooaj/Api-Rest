@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
+// efetuando a criação e conexão com o banco de dados 
 const database = {
     dialect: 'mariadb',
     host: process.env.DATABASE_HOST,
