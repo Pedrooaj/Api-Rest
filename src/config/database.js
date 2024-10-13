@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
-// efetuando a criação e conexão com o banco de dados 
+// efetuando a conexão com o banco de dados e exportando para as migrations e támbem para o .sequelizerc reconhecer o banco de dados
 const database = {
     dialect: 'mariadb',
     host: process.env.DATABASE_HOST,
