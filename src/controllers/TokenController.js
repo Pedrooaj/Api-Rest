@@ -4,6 +4,8 @@ import jwt from "jsonwebtoken";
 // Este controller e responsavel pela criação do token JWT verificando com o banco de Dados a validade dos dados do usuario.
 class TokenController{
     async create(req, res){
+
+        // aqui recebemos do body email e senha para fazermos a validação com o banco de dados nas proximas linhas
         const { email = '', password = '' } = req.body;
 
         if(!email || !password){
