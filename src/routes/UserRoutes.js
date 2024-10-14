@@ -1,10 +1,11 @@
 import UserController from "../controllers/UserController";
 import { Router } from "express";
+import loginRequired from "../middlewares/loginRequired";
 
 const UserRoute = Router();
 
 // rotas de users 
-UserRoute.get("/", UserController.index);
+UserRoute.get("/", loginRequired, UserController.index);
 UserRoute.post("/", UserController.create);
 UserRoute.get("/:id", UserController.show);
 UserRoute.put("/:id", UserController.update);

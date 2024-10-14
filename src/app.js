@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import "./database"; // Importando arquivo que contem a conexão com o banco de dados e Models
+import TokenRoute from "./routes/TokenRoutes";
 
 
 
@@ -19,6 +20,7 @@ class App {
     router(){
         this.app.use("/", HomeRoute); // se refere a rota Home
         this.app.use("/users", UserRoute); // Se refere a rota de usuarios
+        this.app.use("/tokens", TokenRoute)
     }
 
     middlewares(){

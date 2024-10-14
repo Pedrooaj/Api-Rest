@@ -58,4 +58,10 @@ export default class User extends Model{
         })
         return this;
     }
+
+    // função responsavel por desfazer o hash e verificar se a senha está correta
+    // recebe como parametro a senha e enviada e compara o hash com o do usuario atual da classe 
+    passwordIsValid(password){
+        return bcryptjs.compare(password, this.password_hash);
+    }
 }
