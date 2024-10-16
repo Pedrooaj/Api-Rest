@@ -20,6 +20,18 @@ npx sequelize migration:create --name=alunos
 ```bash
 npx sequelize migration:db
 ```
+
+- Efetua criação da Seeder Para teste no Banco de dados, **cria um template de array de objetos usuários para ser testado no banco de dados.**
+```bash
+npx sequelize seed:generate --name criar-usuarios
+```
+
+- Executa a Seeder referente ao arquivo seeder gerado, **com base no template e tabela predefinida para teste dooo banco ode dados.** 
+```bash
+npx sequelize db:seed:all
+```
+
+
 ## Stack utilizada
 
 **Front-end:** ...
