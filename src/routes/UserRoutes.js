@@ -7,8 +7,8 @@ const UserRoute = Router();
 // rotas de users 
 
 
-UserRoute.get("/", UserController.index); // Lista usuários * Não deveriam existir em produção 
-UserRoute.get("/:id",loginRequired, UserController.show); // Lista usuário * Não deveriam existir em produção
+//UserRoute.get("/", UserController.index); // Lista usuários * Não deveriam existir em produção 
+//UserRoute.get("/:id",loginRequired, UserController.show); // Lista usuário * Não deveriam existir em produção
 
 
 // Necessarios em produção
