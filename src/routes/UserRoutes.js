@@ -5,11 +5,16 @@ import loginRequired from "../middlewares/loginRequired";
 const UserRoute = Router();
 
 // rotas de users 
-UserRoute.get("/", loginRequired, UserController.index);
-UserRoute.post("/", UserController.create);
-UserRoute.get("/:id", UserController.show);
-UserRoute.put("/:id", UserController.update);
-UserRoute.delete("/:id", UserController.delete);
+
+
+// UserRoute.get("/", UserController.index); // Lista usuários * Não deveriam existir em produção 
+// UserRoute.get("/:id",loginRequired, UserController.show); // Lista usuário * Não deveriam existir em produção
+
+
+// Necessarios em produção
+UserRoute.post("/", UserController.create);  
+UserRoute.put("/", loginRequired, UserController.update);
+UserRoute.delete("/",loginRequired, UserController.delete);
 
 
 
