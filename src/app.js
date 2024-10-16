@@ -1,6 +1,7 @@
 import express from "express";
 import HomeRoute from "./routes/HomeRoutes";
 import UserRoute from "./routes/UserRoutes";
+import AlunoRoute from "./routes/AlunoRoutes";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -20,7 +21,8 @@ class App {
     router(){
         this.app.use("/", HomeRoute); // se refere a rota Home
         this.app.use("/users", UserRoute); // Se refere a rota de usuarios
-        this.app.use("/tokens", TokenRoute)
+        this.app.use("/tokens", TokenRoute);
+        this.app.use("/alunos", AlunoRoute)
     }
 
     middlewares(){
