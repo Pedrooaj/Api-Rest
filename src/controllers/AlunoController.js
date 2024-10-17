@@ -22,7 +22,7 @@ class AlunoController{
 
     async delete(req, res){
         try {
-            const id = req.params.id;
+            const { id } = req.params;
 
             if(!id){
                 return res.status(400).json({
@@ -52,13 +52,14 @@ class AlunoController{
 
     async update(req, res){
         try {
-            if(!req.params.id){
+            const { id } = req.params
+            if(!id){
                 return res.status(400).json({
                     errors: ['Id inválido']
                 })
             }
     
-            const aluno = await Aluno.findByPk(req.params.id);
+            const aluno = await Aluno.findByPk(id);
     
             if(!aluno){
                 return res.status(400).json({
@@ -67,7 +68,7 @@ class AlunoController{
             }
     
             await aluno.update(req.body);
-            const { id, nome, sobrenome, email, idade, peso, altura } = aluno; 
+            const { nome, sobrenome, email, idade, peso, altura } = aluno; 
             return res.json({
                 id,
                 nome,
@@ -80,7 +81,6 @@ class AlunoController{
         } catch (error) {
             console.log(error);
         }
-
     }
 }
 
