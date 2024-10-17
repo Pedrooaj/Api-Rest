@@ -4,7 +4,7 @@ class UserController{
     // Index -> lista todos usuarios - GET
     async index(req, res){
         try {
-            const Users = await User.findAll({ attributes: ['id', 'nome', 'email']});
+            const Users = await User.findAll({ attributes: ['id', 'nome', 'email']}); 
             return res.json(Users);
         } catch (error) {
             return res.json(null)

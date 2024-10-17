@@ -2,20 +2,85 @@ import Aluno from "../models/Aluno";
 
 class AlunoController{
     async index(req,res){
-        const Users = await Aluno.findAll();
-        res.json(Users);
+        const alunos = await Aluno.findAll();
+        res.json(alunos);
     }
 
     async create(req,res){
-        const user = await Aluno.create({
-            nome: "Pedro",
-            sobrenome: "Lemoos",
-            email: "pedroo@gmaillll.com",
-            idade: 18,
-            peso: 60.0,
-            altura: 1.70
-        });
-        return res.json(user);
+        try {
+            const aluno = req.body;
+            const newAluno = await Aluno.create(aluno);
+            let { id, nome, sobrenome, email, idade, peso, altura } = newAluno;
+            return res.json({id,nome,sobrenome,email,idade,altura,peso});
+        } catch (e) {
+            return res.status(400).json({
+                errors: e.errors.map((erro) => erro.message)
+            })
+            
+        }
+    }
+
+    async delete(req, res){
+        try {
+            const id = req.params.id;
+
+            if(!id){
+                return res.status(400).json({
+                    errors: ['Id inválido']
+                })
+            }
+    
+            const aluno = await Aluno.findByPk(id);
+    
+            if(!aluno){
+                return res.status(400).json({
+                    errors: ['Aluno inexistente']
+                })
+            }
+            await aluno.destroy();
+            const { nome, sobrenome, email } = aluno;
+            return res.json({
+                id,
+                nome,
+                sobrenome,
+                email
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async update(req, res){
+        try {
+            if(!req.params.id){
+                return res.status(400).json({
+                    errors: ['Id inválido']
+                })
+            }
+    
+            const aluno = await Aluno.findByPk(req.params.id);
+    
+            if(!aluno){
+                return res.status(400).json({
+                    errors: ['Aluno inválido']
+                })
+            }
+    
+            await aluno.update(req.body);
+            const { id, nome, sobrenome, email, idade, peso, altura } = aluno; 
+            return res.json({
+                id,
+                nome,
+                sobrenome,
+                email,
+                idade,
+                peso,
+                altura
+            })
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 }
 
