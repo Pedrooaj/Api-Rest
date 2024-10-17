@@ -1,11 +1,14 @@
 import express from "express";
 import HomeRoute from "./routes/HomeRoutes";
 import UserRoute from "./routes/UserRoutes";
+import TokenRoute from "./routes/TokenRoutes";
+import AlunoRoute from "./routes/AlunoRoutes";
+
 import dotenv from "dotenv";
 dotenv.config();
 
 import "./database"; // Importando arquivo que contem a conexão com o banco de dados e Models
-import TokenRoute from "./routes/TokenRoutes";
+
 
 
 
@@ -20,7 +23,8 @@ class App {
     router(){
         this.app.use("/", HomeRoute); // se refere a rota Home
         this.app.use("/users", UserRoute); // Se refere a rota de usuarios
-        this.app.use("/tokens", TokenRoute)
+        this.app.use("/tokens", TokenRoute); // Rota para gerar tokens
+        this.app.use("/alunos", AlunoRoute); // rota referente a alunos
     }
 
     middlewares(){
