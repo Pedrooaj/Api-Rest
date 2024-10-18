@@ -1,7 +1,7 @@
 
 class PhotoController{
     async create(req, res){
-        res.json(req.file)
+        res.json(req.file);
     }
 
 }
