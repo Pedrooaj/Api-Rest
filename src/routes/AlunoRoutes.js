@@ -1,12 +1,12 @@
 import { Router } from "express";
 import AlunoController from "../controllers/AlunoController";
-
+import loginRequired from "../middlewares/loginRequired";
 const AlunoRoute = Router();
 
 AlunoRoute.get("/", AlunoController.index);
 AlunoRoute.get("/:id", AlunoController.show);
-AlunoRoute.post("/", AlunoController.create);
-AlunoRoute.delete("/", AlunoController.delete);
-AlunoRoute.put("/", AlunoController.update);
+AlunoRoute.post("/", loginRequired, AlunoController.create);
+AlunoRoute.delete("/:id", loginRequired, AlunoController.delete);
+AlunoRoute.put("/:id", loginRequired,AlunoController.update);
 
 export default AlunoRoute;
