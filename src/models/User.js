@@ -48,7 +48,7 @@ export default class User extends Model{
                 }
                 }
         }, {
-            sequelize
+            sequelize // Se refere a conexão e tabela do banco de dadooos
         });
         this.addHook('beforeSave', async (user) => { 
             // Verifica se há uma senha para fazer o hash se não ele realiza o hash
