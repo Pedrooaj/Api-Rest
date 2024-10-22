@@ -10,6 +10,8 @@ Este e um projeto onde utilizei uma ORM bem famosa chamada Sequelize, juntamente
 - **Json Web Token**, utilizado para validação de sessão e sistema de login com usuários, por conta de sua leveza e támbem segurança do JWT. Foram Utilizados conceitos desde a geração de tokens apenas com a verificação e validade dos dados com o banco de dados como email e senha, além de armazenar e disponibilizar dados de identificação como Id, Email e permissões com base na verificação e validação do Token.
 - **Sucrase** e um compilador semelhante ao babel, com ele nos podemos utilizar type module do ES6+ além de ter alta compatibilidade com versões antigas do nodeJS e sua veloz compilação, torna ele muito util para a aplicação pois conseguimos integrar ele muito facilmente com Sequelize.
 - **Multer** e uma biblioteca utilizada para upload de fotos e arquivos, por método post em forma de Multipart Form ou Formularios. Neste projeto eu utilizei ela para realizar o upload de fotos dos Alunos e realizei desde a criação de seu middleware para obter a imagem e informações via req e támbem configuração do seu modulo. 
+- **Validator** foi utilizado para validação de credenciais dos moodels.
+- **bcryptjs** e uma biblioteca utilizada com intuito de seguraça para realizarmos o hash da senha.
 
 ## Rotas
 
@@ -67,4 +69,9 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 
 
 
+
+
+## Autores
+
+- [@pedroooaj](https://www.github.com/pedrooaj)
 
