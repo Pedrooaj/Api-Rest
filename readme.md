@@ -13,6 +13,9 @@ Este e um projeto onde utilizei uma ORM bem famosa chamada Sequelize, juntamente
 - **Validator** foi utilizado para validação de credenciais dos moodels.
 - **bcryptjs** e uma biblioteca utilizada com intuito de seguraça para realizarmos o hash da senha.
 
+
+
+
 ## Rotas
 
 - **/users** - com suas respectivas funções de gerenciar usuários ela tem um middleware de depêndencia que se chama loginRequired para login do usuário com permissões especificas. Tais como Update, Delete e Show.
@@ -60,6 +63,34 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 `TOKEN_SECRET`,`TOKEN_EXPIRATION` E `URL_UPLOADS`
 
 
+## Rodando localmente
+
+Clone o projeto
+
+```bash
+  git clone git@github.com:Pedrooaj/Api-Rest.git
+```
+
+Entre no diretório do projeto
+
+```bash
+  cd Api-Rest
+```
+
+Instale as dependências
+
+```bash
+  npm install
+```
+
+Inicie o servidor
+
+```bash
+  npm run dev
+```
+
+
+
 ## Stack utilizada
 
 **Front-end:** ...
@@ -74,4 +105,3 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 ## Autores
 
 - [@pedroooaj](https://www.github.com/pedrooaj)
-
