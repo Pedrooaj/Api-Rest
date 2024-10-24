@@ -8,8 +8,8 @@ export default class Aluno extends Model{
                 defaultValue: ""
             },
             sobrenome: {
-               type: Sequelize.STRING,
-               defaultValue: ""
+                type: Sequelize.STRING,
+                defaultValue: ""
             },
             email: {
                 type: Sequelize.STRING,
@@ -55,5 +55,6 @@ export default class Aluno extends Model{
         });
         return this;
     }
+
 
 }

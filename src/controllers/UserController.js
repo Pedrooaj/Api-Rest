@@ -4,27 +4,27 @@ class UserController{
     // Index -> lista todos usuarios - GET
     async index(req, res){
         try {
-            const Users = await User.findAll({ attributes: ['id', 'nome', 'email']}); 
+            const Users = await User.findAll({ attributes: ["id", "nome", "email"] }); 
             return res.json(Users);
         } catch (error) {
-            return res.json(null)
+            return res.json(null);
         }
 
     }
     // Create/Store -> cria um novo usuario - POST
-   async create(req, res){
-    try {
-        const novoUser = await User.create(req.body);
-        const { id, nome, email } = novoUser;
-        return res.json({
-            id,
-            nome,
-            email
-        });
-    } catch (e) {
-        return res.status(400).json({errors: e.errors.map((erro) => erro.message)})
+    async create(req, res){
+        try {
+            const novoUser = await User.create(req.body);
+            const { id, nome, email } = novoUser;
+            return res.json({
+                id,
+                nome,
+                email
+            });
+        } catch (e) {
+            return res.status(400).json({ errors: e.errors.map((erro) => erro.message) });
+        }
     }
-   }
     // Show -> mostra um usuario - GET
     async show(req,res){
         try {
@@ -37,10 +37,10 @@ class UserController{
 
                 });
             }else{
-                return res.json({erros: ['Usuário não existe']})
+                return res.json({ erros: ["Usuário não existe"] });
             }
         } catch (e) {
-            return res.json({errors: e.errors.map((erro) => erro.message)});
+            return res.json({ errors: e.errors.map((erro) => erro.message) });
         }
 
     }
@@ -48,11 +48,11 @@ class UserController{
     async update(req,res){
         try {
             if(!req.userId){
-                return res.status(400).json({errors: ['Id não enviado']})
+                return res.status(400).json({ errors: ["Id não enviado"] });
             }
             const user = await User.findByPk(req.userId);
             if(!user){
-                return res.status(400).json({errors: ['Usuário não existe']})
+                return res.status(400).json({ errors: ["Usuário não existe"] });
             }
             
             const newUser = await user.update(req.body);
@@ -63,9 +63,9 @@ class UserController{
                 id,
                 nome,
                 email
-            })
+            });
         } catch (e) {            
-          return res.json({errors: e.errors.map((erro) => erro.message)})
+            return res.json({ errors: e.errors.map((erro) => erro.message) });
         }
     }
 
@@ -75,7 +75,7 @@ class UserController{
             if(!req.userId){
                 return res.json({
                     errors: ["Id não enviado"]
-                })
+                });
             }
 
             const user = await User.findByPk(req.userId);
@@ -83,7 +83,7 @@ class UserController{
             if(!user){
                 return res.json({
                     errors: ["Usuário não existe"]
-                })
+                });
             }
 
             await user.destroy();

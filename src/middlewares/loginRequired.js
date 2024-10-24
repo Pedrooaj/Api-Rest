@@ -14,12 +14,12 @@ export default async function loginRequired(req, res, next) {
 
     if(!authorization){
         return res.status(401).json({
-            errors: ['Login requerido!']
-        })
+            errors: ["Login requerido!"]
+        });
     }
 
     // separando Bearer do token pelo split de espaço
-    const [Bearer, token] = authorization.split(' ');
+    const [Bearer, token] = authorization.split(" ");
     
 
     try {
@@ -31,8 +31,8 @@ export default async function loginRequired(req, res, next) {
 
         if(!user){
             return res.status(401).json({
-                errors: ['Usuário inválido']
-            })
+                errors: ["Usuário inválido"]
+            });
         }
 
         // todos dados abaixo são referentes extraidos dos jwt
@@ -41,8 +41,8 @@ export default async function loginRequired(req, res, next) {
         next();
     } catch (error) {
         return res.status(401).json({
-            errors: ['Token inválido!']
-        })
+            errors: ["Token inválido!"]
+        });
     }
 
 }

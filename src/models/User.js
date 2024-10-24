@@ -1,5 +1,5 @@
 import Sequelize, { Model }  from "sequelize";
-import bcryptjs from "bcryptjs"
+import bcryptjs from "bcryptjs";
 
 export default class User extends Model{
     static init(sequelize){
@@ -10,14 +10,14 @@ export default class User extends Model{
         */
         super.init({
             nome: {
-            type: Sequelize.STRING,
-            defaultValue: "",
-            validate: {
-                len: {
-                    args: [4,255],
-                    msg: "Campo nome deve ter entre 3 e 255 caracteres"
+                type: Sequelize.STRING,
+                defaultValue: "",
+                validate: {
+                    len: {
+                        args: [4,255],
+                        msg: "Campo nome deve ter entre 3 e 255 caracteres"
+                    }
                 }
-            }
             },
             email: {
                 type: Sequelize.STRING,
@@ -31,11 +31,11 @@ export default class User extends Model{
                     }
                     
                 }
-                },
+            },
             password_hash: {
                 type: Sequelize.STRING,
                 defaultValue: "",
-                },
+            },
             password: {
                 // Utilizamos o tipo virtual pois esta senha e apenas temporaria e vamos enviar apenas o hash para o banco de dados
                 type: Sequelize.VIRTUAL,
@@ -46,16 +46,16 @@ export default class User extends Model{
                         msg: "Senha deve ter entre 6 e 50 caracteres"
                     }
                 }
-                }
+            }
         }, {
             sequelize
         });
-        this.addHook('beforeSave', async (user) => { 
+        this.addHook("beforeSave", async (user) => { 
             // Verifica se há uma senha para fazer o hash se não ele realiza o hash
             if(user.password){
-            user.password_hash = await bcryptjs.hash(user.password, 8); // realiza o hash da senha com 8 de salt
+                user.password_hash = await bcryptjs.hash(user.password, 8); // realiza o hash da senha com 8 de salt
             }
-        })
+        });
         return this;
     }
 

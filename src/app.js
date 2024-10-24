@@ -7,6 +7,7 @@ dotenv.config();
 
 import "./database"; // Importando arquivo que contem a conexão com o banco de dados e Models
 import TokenRoute from "./routes/TokenRoutes";
+import FotoRoute from "./routes/FotoRoutes";
 
 
 
@@ -21,13 +22,16 @@ class App {
     router(){
         this.app.use("/", HomeRoute); // se refere a rota Home
         this.app.use("/users", UserRoute); // Se refere a rota de usuarios
-        this.app.use("/tokens", TokenRoute);
-        this.app.use("/alunos", AlunoRoute)
+        this.app.use("/token", TokenRoute);
+        this.app.use("/alunos", AlunoRoute);
+        this.app.use("/fotos", FotoRoute);
     }
 
     middlewares(){
         // Aqui configuramos todos middlewares necessarios para nossa aplicação funcionar corretamente
-        this.app.use(express.urlencoded({extended: true})); // Utilizado para maior compatibilidade e transformar valores de um formulario em objetos javascript
+        // Utilizado para maior compatibilidade e transformar valores de um formulario em objetos javascript
+        this.app.use(express.urlencoded({ extended: true })); 
+        
         this.app.use(express.json()); // habilitando o json para retornamos para o front-end
 
     }   

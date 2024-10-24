@@ -10,12 +10,12 @@ class AlunoController{
         try {
             const aluno = req.body;
             const newAluno = await Aluno.create(aluno);
-            let { id, nome, sobrenome, email, idade, peso, altura } = newAluno;
-            return res.json({id,nome,sobrenome,email,idade,altura,peso});
+            const { id, nome, sobrenome, email, idade, peso, altura } = newAluno;
+            return res.json({ id,nome,sobrenome,email,idade,altura,peso });
         } catch (e) {
             return res.status(400).json({
                 errors: e.errors.map((erro) => erro.message)
-            })
+            });
             
         }
     }
@@ -26,16 +26,16 @@ class AlunoController{
 
             if(!id){
                 return res.status(400).json({
-                    errors: ['Id inválido']
-                })
+                    errors: ["Id inválido"]
+                });
             }
     
             const aluno = await Aluno.findByPk(id);
     
             if(!aluno){
                 return res.status(400).json({
-                    errors: ['Aluno inexistente']
-                })
+                    errors: ["Aluno inexistente"]
+                });
             }
             await aluno.destroy();
             const { nome, sobrenome, email } = aluno;
@@ -52,19 +52,19 @@ class AlunoController{
 
     async update(req, res){
         try {
-            const { id } = req.params
+            const { id } = req.params;
             if(!id){
                 return res.status(400).json({
-                    errors: ['Id inválido']
-                })
+                    errors: ["Id inválido"]
+                });
             }
     
             const aluno = await Aluno.findByPk(id);
     
             if(!aluno){
                 return res.status(400).json({
-                    errors: ['Aluno inválido']
-                })
+                    errors: ["Aluno inválido"]
+                });
             }
     
             await aluno.update(req.body);
@@ -77,7 +77,7 @@ class AlunoController{
                 idade,
                 peso,
                 altura
-            })
+            });
         } catch (error) {
             console.log(error);
         }
