@@ -6,6 +6,6 @@ const FotoRoute = Router();
 
 FotoRoute.post("/", loginRequired, FotoController.create);
 FotoRoute.delete("/",loginRequired ,FotoController.delete);
-FotoRoute.get("/", loginRequired, FotoController.index);
+FotoRoute.get("/", FotoController.index);
 
 export default FotoRoute;

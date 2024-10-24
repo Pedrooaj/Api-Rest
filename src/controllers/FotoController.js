@@ -1,8 +1,10 @@
 import multerConfig from "../config/multer";
 import multer from "multer";
 import Foto from "../models/Foto";
+import Aluno from "../models/Aluno"
 import fs from "fs";
 import path, { resolve } from "path";
+
 
 const upload = multer(multerConfig).single("foto");
 
@@ -20,9 +22,9 @@ class FotoController {
             }
             try {
                 const { originalname, filename } = req.file;
-                const { aluno_id } = req.body;
+                const { aluno_id } = req.body;                
 
-                const foto = await Foto.create({ originalname,filename,aluno_id });
+                const foto = await Foto.create({ originalname, filename, aluno_id });
                 return res.json(foto);
 
         
@@ -36,13 +38,24 @@ class FotoController {
     }
 
     async delete(req, res){
-        const id = req.userId;
+        const { id } = req.body;
 
-        const foto = await Foto.findByPk(id);
+        const aluno = await Aluno.findOne({
+            where: { id },
+            attributes: ['id', 'nome', 'sobrenome', 'email'],
+            order: [['id', 'DESC'], [Foto, 'id', 'DESC']],
+            include: {
+                model: Foto,
+                as: 'fotos'
+            }
+        })
 
-        const filePath = path.join(__dirname, "..", "..","uploads","images", foto.filename);
+        
 
-        fs.unlink(filePath, (erro) => {
+        return res.json(aluno);
+
+
+        /*fs.unlink(filePath, (erro) => {
             if(erro){
                 return res.status(500).json({
                     errors: ["Erro ao deletar arquivo"]
@@ -57,6 +70,7 @@ class FotoController {
             success: true
         });
 
+        */
         
     }
 }
