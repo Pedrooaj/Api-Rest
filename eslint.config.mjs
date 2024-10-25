@@ -1,29 +1,24 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
+import js from "@eslint/js";
+import airbnb from "eslint-config-airbnb-base";
 
+// Extraindo as regras do Airbnb
+const airbnbRules = airbnb.rules;
 
 export default [
-    { languageOptions: { globals: globals.node } },
-    pluginJs.configs.recommended,
-    {
-        "env": {
-          "node": true,
-          "es6": true
-        },
-        "extends": "airbnb",
-        "parserOptions": {
-          "ecmaVersion": 2020,
-          "sourceType": "module"
-        },
-        "plugins": [
-          "import",
-          "node",
-          "promise"
-        ],
-        "rules": {
-            "no-console": "off", // Permitir console.log
-            "import/prefer-default-export": "off" // Desativar a exigência de exportação padrão
-        }
-      }
-      
+  js.configs.recommended,
+  {
+    languageOptions: {
+      parserOptions: {
+        ecmaVersion: "latest",
+        sourceType: "module",
+      },
+    },
+    plugins: {
+      import: {}, // Declara o plugin, mas não precisa de configurações adicionais
+    },
+    rules: {
+      ...airbnbRules, // Inclui as regras do Airbnb
+      // Suas regras personalizadas, se necessário
+    },
+  },
 ];

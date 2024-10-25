@@ -1,9 +1,10 @@
+/* eslint-disable no-undef */
 import multerConfig from "../config/multer";
 import multer from "multer";
 import Foto from "../models/Foto";
 import Aluno from "../models/Aluno"
 import fs from "fs";
-import path, { resolve } from "path";
+import { resolve } from "path";
 
 
 const upload = multer(multerConfig).single("foto");
@@ -38,39 +39,51 @@ class FotoController {
     }
 
     async delete(req, res){
-        const { id } = req.body;
+        try {
+            const { id } = req.body;
 
-        const aluno = await Aluno.findOne({
-            where: { id },
-            attributes: ['id', 'nome', 'sobrenome', 'email'],
-            order: [['id', 'DESC'], [Foto, 'id', 'DESC']],
-            include: {
-                model: Foto,
-                as: 'fotos'
+            if(!id){
+                return res.status(400).json({
+                    error: ['Id inválido']
+                })
             }
-        })
 
+            const aluno = await Aluno.findOne({
+                where: { id },
+                attributes: ['id', 'nome', 'sobrenome', 'email'],
+                order: [['id', 'DESC'], [Foto, 'id', 'DESC']],
+                include: {
+                    model: Foto,
+                }
+            })
+    
+            const foto = aluno.Fotos.shift();
+    
+            const { filename } = foto;
+            const filePath = resolve(__dirname, "..", "..", 'uploads', 'images', filename);
+    
+    
+            fs.unlink(filePath, (erro) => {
+                if(erro){
+                    return res.status(500).json({
+                        errors: ["Erro ao deletar arquivo"]
+                    });
+                }
+                
+            });
+    
+            await foto.destroy();
+    
+            return res.json({
+                success: true
+            });
+    
+        } catch (error) {
+            return res.status(400).json({
+                errors: ["Não há fotos na galeria deste aluno"]
+            })
+        }
         
-
-        return res.json(aluno);
-
-
-        /*fs.unlink(filePath, (erro) => {
-            if(erro){
-                return res.status(500).json({
-                    errors: ["Erro ao deletar arquivo"]
-                });
-            }
-            
-        });
-
-        await foto.destroy();
-
-        return res.json({
-            success: true
-        });
-
-        */
         
     }
 }
